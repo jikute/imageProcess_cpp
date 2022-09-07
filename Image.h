@@ -1,10 +1,12 @@
 #pragma once
+#include<vector>
+
+using namespace std;
+
 class Image
 {
-public:
-	int row;
-	int column;
-	unsigned char** content;
+private:
+	vector<vector<int>> pixels;
 	Image(int row, int column);
 	~Image();
 	// read image from file

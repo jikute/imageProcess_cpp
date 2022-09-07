@@ -7,26 +7,19 @@
 
 Image::Image(int row, int column)
 {
-	this->row = row;
-	this->column = column;
-	this->content = (unsigned char**)malloc(sizeof(unsigned char*) * row);
-	for (int x = 0; x < this->row; x++)
+	row = row;
+	column = column;
+	pixels.resize(row);
+	for (int i = 0; i < row; i++)
 	{
-		this->content[x] = \
-			(unsigned char*)malloc(sizeof(unsigned char) * column);
+		pixels[i].resize(column);
 	}
 }
 
 // desctructor of class Image
 Image::~Image()
 {
-	for (int x = 0; x < this->row; x++)
-	{
-		free(this->content[x]);
-		this->content[x] = NULL;
-	}
-	free(this->content);
-	this->content = NULL;
+	
 }
 
 // read image from a input file
@@ -41,7 +34,7 @@ void Image::readImage(const char* infile)
 		exit(1);
 	}
 	for (int x = 0; x < row; x++)
-		if (fread(content[x], 1, column, fp) != column)
+		if (fread(pixels[x]., 1, column, fp) != column)
 		{
 			fprintf(stderr, "error: couldn't read enough stuff\n");
 			exit(1);
